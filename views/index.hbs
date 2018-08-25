@@ -8,6 +8,15 @@
 <body>
 	<h1>HELLO {{name}}</h1>
 	<h1>New Website online</h1>
+
+<form acion="" method="post">
+	<input type="text" name="name">
+	<input type="submit" name="submit">
+</form>
+
+	{{#each cats}}
+		<p>{{name}}</p>
+	{{/each}}
 	<p>
 		 Maître {{animal}}, sur un arbre perché,
         Tenait en son bec un fromage.

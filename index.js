@@ -1,19 +1,35 @@
 const express = require('express');
 const app = express();
+const hbs = require('hbs');
+
+const Cat = require('./models/Cat');
+
+const mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/irondb');
+
 
 app.use(express.static('public'));
 
 app.set('views', __dirname + '/views');
+hbs.registerPartials(__dirname + '/views/partials');
 app.set('view engine', 'hbs');
 
-// our first Route
+
 app.get('/', (req, res, next) => {
-	console.log(req);
-	let name = req.query.name;
-	console.log(req.query.name);
-	// res.send(`<html><h1>Welcome ${name}. :)</h1><script>alert("Hello");</script></html>`);
-	res.render('index.hbs', {name: req.query.name, animal: "Renard"})
-  // res.sendFile(__dirname + '/views/index.html');
+	// Create one cat
+	let myCat = new Cat({name: req.query.name});
+	myCat.save()
+	.then(()=>{
+		// return Cat.find({name: req.query.search})
+		return Cat.find({name: 'Minou'})
+	})
+	.then(cats => {
+		res.render('index.hbs', {
+			name: req.query.name, 
+			animal: "Renard", 
+			cats
+		})
+	})
 });
 
 app.get('/articles', (req, res, next) => {
