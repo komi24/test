@@ -4,18 +4,46 @@
 	<meta charset="UTF-8">
 	<title>IronHack Website</title>
 	<link rel="stylesheet" type="text/css" href="/css/style.css">
+	<script
+			  src="https://code.jquery.com/jquery-3.3.1.min.js"
+			  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+			  crossorigin="anonymous"></script>
 </head>
 <body>
-	<h1>HELLO {{name}}</h1>
+<!-- <script type="text/javascript">
+	var x1 = 0
+	var y1 = 0
+	setInterval(()=>{
+		x1 += 1;
+		y1 -= 2;
+		$.get(`/set_player?pn=1&x=${x1}&y=${y1}`)
+	},1000)
+</script>
+ -->
+ 	<h1>HELLO {{name}}</h1>
 	<h1>New Website online</h1>
 
-<form acion="" method="post">
-	<input type="text" name="name">
-	<input type="submit" name="submit">
+<form action="/new_player1" method="get">
+	<input type="submit" name="submit" value="Player 1">
 </form>
 
-	{{#each cats}}
-		<p>{{name}}</p>
+<form action="/new_player2" method="get">
+	<input type="submit" name="submit" value="Player 2">
+</form>
+
+<form action="/login" method="POST">
+  <label for="email">Email</label>
+  <input id="email" type="text" name="email">
+  
+  <label for="password">Password</label>
+  <input id="password" type="password" name="password">
+  
+  <button type="submit">
+    Login
+  </button>
+</form>
+	{{#each dogs}}
+		{{name}} {{age}}
 	{{/each}}
 	<p>
 		 Maître {{animal}}, sur un arbre perché,
